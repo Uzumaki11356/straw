@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>App Rating Flow</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f3f3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      width: 360px;
+    }
+
+    .step {
+      display: none;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    .star-rating {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    .star {
+      font-size: 32px;
+      cursor: pointer;
+      color: #ccc;
+      margin: 0 4px;
+    }
+
+    .star.selected {
+      color: #fbc02d;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+      resize: vertical;
+    }
+
+    .char-count {
+      text-align: right;
+      font-size: 12px;
+      color: #555;
+    }
+
+    .question {
+      margin: 15px 0 5px;
+    }
+
+    .answers button {
+      margin: 5px 8px 0 0;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .answers button.selected {
+      background-color: #e3f2fd;
+      border-color: #2196f3;
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 10px;
+      width: 100%;
+      background-color: #2196f3;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .btn-outline {
+      background: none;
+      color: #2196f3;
+      text-decoration: underline;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+      display: block;
+      text-align: center;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .big-star {
+      font-size: 60px;
+      color: #fbc02d;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  
+  <!-- Step 1: Rate App -->
+  <div class="step active" id="step1">
+    <h2 class="center">Rate this app</h2>
+    <p class="center">Tell others what you think</p>
+    <div class="star-rating" id="stars1">
+      <span class="star" data-value="1">&#9733;</span>
+      <span class="star" data-value="2">&#9733;</span>
+      <span class="star" data-value="3">&#9733;</span>
+      <span class="star" data-value="4">&#9733;</span>
+      <span class="star" data-value="5">&#9733;</span>
+    </div>
+    <button class="btn" onclick="goToStep(2)">Write a review</button>
+  </div>
+
+  <!-- Step 2: Review + Question -->
+  <div class="step" id="step2">
+    <div class="center">
+      <h3>Username</h3>
+      <p>Reviews are public and include your account and device info.</p>
+      <div class="star-rating" id="stars2">
+        <span class="star" data-value="1">&#9733;</span>
+        <span class="star" data-value="2">&#9733;</span>
+        <span class="star" data-value="3">&#9733;</span>
+        <span class="star" data-value="4">&#9733;</span>
+        <span class="star" data-value="5">&#9733;</span>
+      </div>
+    </div>
+    <textarea id="review" maxlength="500" placeholder="Describe your experience (optional)"></textarea>
+    <div class="char-count" id="charCount">0/500</div>
+
+    <div class="question">
+      <strong>Can you upload videos with this app?</strong>
+    </div>
+    <div class="answers" id="answers">
+      <button data-answer="No">No</button>
+      <button data-answer="Not sure">Not sure</button>
+      <button data-answer="Yes">Yes</button>
+    </div>
+
+    <button class="btn" onclick="goToStep(3)">Post</button>
+  </div>
+
+  <!-- Step 3: Thank You -->
+  <div class="step" id="step3">
+    <div class="center">
+      <div class="big-star">⭐️</div>
+      <h2>Thanks for sharing!</h2>
+      <p>Your feedback helps others decide what apps to try.</p>
+      <button class="btn" onclick="goToStep(4)">Review more</button>
+      <button class="btn-outline" onclick="goToStep(4)">Done</button>
+    </div>
+  </div>
+
+
+  <!-- Step 4: You're all set -->
+  <div class="step" id="step4">
+    <div class="center">
+      <h2>You’re all set!</h2>
+      <p>Thanks again for your feedback.</p>
+      <button class="btn" onclick="goToStep(1)">Rate another app</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Change steps
+  function goToStep(step) {
+    document.querySelectorAll('.step').forEach(div => div.classList.remove('active'));
+    document.getElementById('step' + step).classList.add('active');
+  }
+
+  // Handle star ratings
+  function setupStars(id) {
+    const stars = document.querySelectorAll(`#${id} .star`);
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        const val = parseInt(star.dataset.value);
+        stars.forEach(s => {
+          s.classList.toggle('selected', parseInt(s.dataset.value) <= val);
+        });
+      });
+    });
+  }
+
+  setupStars('stars1');
+  setupStars('stars2');
+
+  // Character counter
+  const reviewText = document.getElementById('review');
+  const charCount = document.getElementById('charCount');
+  reviewText.addEventListener('input', () => {
+    charCount.textContent = `${reviewText.value.length}/500`;
+  });
+
+  // Question answer selection
+  const answerBtns = document.querySelectorAll('#answers button');
+  answerBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      answerBtns.forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    });
+  });
+</script>
+
+</body>
+</html>
