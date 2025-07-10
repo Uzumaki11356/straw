@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact the Creator</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      min-height: 100vh;
+      background: linear-gradient(120deg, #181a20 60%, #23252b 100%);
+      background-size: 200% 200%;
+      animation: gradientMove 8s ease-in-out infinite;
+      color: #fff;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .creator-container {
+      max-width: 540px;
+      width: 100%;
+      background: #23252b;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px 0 rgba(255,76,96,0.10), 0 2px 8px rgba(0,0,0,0.18);
+      padding: 38px 30px 32px 30px;
+      margin: 40px 0;
+      text-align: center;
+      animation: fadeIn 1.1s cubic-bezier(.39,.575,.56,1.000);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: none; }
+    }
+    .creator-title {
+      color: #ff4c60;
+      font-size: 2.2em;
+      margin-bottom: 10px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #ff4c6030;
+    }
+    .creator-desc {
+      color: #ccc;
+      font-size: 1.13em;
+      margin-bottom: 28px;
+    }
+    .projector-row {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      margin-bottom: 18px;
+    }
+    .projector-card {
+      background: #181a20;
+      border-radius: 14px;
+      box-shadow: 0 2px 12px 0 rgba(255,76,96,0.08);
+      padding: 22px 18px 18px 18px;
+      margin: 0 auto;
+      max-width: 400px;
+      text-align: left;
+      position: relative;
+      border: 1.5px solid transparent;
+      transition: box-shadow 0.22s, border 0.22s, transform 0.22s;
+    }
+    .projector-card:hover {
+      box-shadow: 0 6px 24px #ff4c60a0, 0 2px 8px rgba(0,0,0,0.18);
+      border: 1.5px solid #ff4c60;
+      transform: translateY(-2px) scale(1.025);
+    }
+    .projector-title {
+      color: #ffb199;
+      font-size: 1.1em;
+      font-weight: bold;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+    .projector-names {
+      margin-bottom: 12px;
+    }
+    .projector-names p {
+      margin: 0 0 4px 0;
+      color: #fff;
+      font-size: 1.08em;
+      font-weight: 500;
+    }
+    .know-more-btn {
+      background: #ff4c60;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 26px;
+      font-size: 1.08em;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+      font-weight: bold;
+      box-shadow: 0 2px 8px #ff4c6030;
+      outline: none;
+      margin-top: 6px;
+      text-decoration: none;
+    }
+    .know-more-btn:hover {
+      background: #ff1a3c;
+      box-shadow: 0 4px 16px #ff4c60a0;
+    }
+    @media (max-width: 600px) {
+      .creator-container {
+        padding: 16px 2vw 16px 2vw;
+      }
+      .projector-card {
+        padding: 14px 8px 12px 8px;
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="creator-container">
+    <div class="creator-title">Welcome to our NOP CINEMA</div>
+    <div class="creator-desc">After thinking million years finally We've decide to make NOP CINEMA web <span style="color: #ff4c60;">Anime</span>. Watch now.</div>
+    <div class="projector-row">
+      <div class="projector-card">
+        <div class="projector-title">PROJECTOR</div>
+        <div class="projector-names">
+          <p>Bros chantha</p>
+          <p>Tean TongER</p>
+        </div>
+        <button class="know-more-btn"><a href="contactlink1.html">Know more</a></button>
+      </div>
+      <div class="projector-card">
+        <div class="projector-title">PROJECTOR</div>
+        <div class="projector-names">
+          <p>Chitra SreyPhim</p>
+          <p>Khoeurt Lyly</p>
+        </div>
+        <button class="know-more-btn"><a href="contactcreator.html">Know more</a></button>
+      </div>
+      <div class="projector-card">
+        <div class="projector-title">PROJECTOR</div>
+        <div class="projector-names">
+          <p>Nean Sreynoeng</p>
+          <p>Chhin srey soeung</p>
+        </div>
+        <button class="know-more-btn"><a href="contactcreator.html">know more</a></button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

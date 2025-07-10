@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KissKH Anime Movies</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">KissKH</div>
+    <nav>
+      <a href="#" class="active">Home</a>
+      <a href="contactcreator.html">Creator</a>
+      <a href="rating.html">Rate</a>
+      <a href="dashboard.html">History</a>
+    </nav>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search anime...">
+    </div>
+    <button id="loginBtn" class="login-btn">Login</button>
+  </header>
+  <main>
+    <div class="movie-gallery" id="movieGallery"></div>
+  </main>
+  
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <h2>Login</h2>
+      <form id="loginForm">
+        <input type="text" id="username" placeholder="Username" required><br>
+        <input type="password" id="password" placeholder="Password" required><br>
+        <button type="submit">Login</button>
+      </form>
+      <div id="loginError" class="error-msg"></div>
+    </div>
+  </div>
+
+  <!-- Booking Modal -->
+  <div id="bookingModal" class="modal">
+    <div class="modal-content booking-modal-content">
+      <span class="close" id="closeBookingModal">&times;</span>
+      <h2 id="bookingTitle">Book Seats</h2>
+      
+      <!-- Movie Selection -->
+      <div class="booking-section">
+        <h3>Select Movie</h3>
+        <select id="movieSelect" required>
+          <option value="">Choose a movie...</option>
+        </select>
+      </div>
+
+      <!-- Date Selection -->
+      <div class="booking-section">
+        <h3>Select Date</h3>
+        <input type="date" id="bookingDate" required>
+      </div>
+
+      <!-- Seat Selection -->
+      <div class="booking-section">
+        <h3>Select Seats</h3>
+        <div class="seat-container">
+          <div class="screen">SCREEN</div>
+          <div class="seats-grid" id="seatsGrid"></div>
+          <div class="seat-legend">
+            <div class="legend-item">
+              <div class="seat available"></div>
+              <span>Available ($5/$4/$3)</span>
+            </div>
+            <div class="legend-item">
+              <div class="seat selected"></div>
+              <span>Selected</span>
+            </div>
+            <div class="legend-item">
+              <div class="seat booked"></div>
+              <span>Booked</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- User Information -->
+      <div class="booking-section">
+        <h3>User Information</h3>
+        <input type="text" id="userName" placeholder="Full Name" required>
+        <input type="email" id="userEmail" placeholder="Email" required>
+        <input type="tel" id="userPhone" placeholder="Phone Number" required>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="booking-section">
+        <h3>Order Summary</h3>
+        <div id="orderSummary">
+          <p>No seats selected</p>
+        </div>
+        <div id="totalPrice">Total: $0</div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="booking-actions">
+        <button id="updateBooking" class="btn-secondary" disabled>Update</button>
+        <button id="deleteBooking" class="btn-danger" disabled>Delete</button>
+        <button id="submitBooking" class="btn-primary" disabled>Submit & Pay</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- QR Payment Modal -->
+  <div id="qrModal" class="modal">
+    <div class="modal-content qr-modal-content">
+      <span class="close" id="closeQrModal">&times;</span>
+      <div class="payment-header">
+        <h2>Payment QR Code</h2>
+      </div>
+      <div class="qr-section">
+        <div id="qrCode"></div>
+      </div>
+      <div class="payment-details">
+        <h3>Payment Details</h3>
+        <div id="paymentSummary"></div>
+        <p class="payment-instruction">Scan the QR code to complete your payment</p>
+        <button id="paymentDoneBtn" class="btn-primary">I Have Paid</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Payment Confirmation Modal -->
+  <div id="paymentConfirmModal" class="modal">
+    <div class="modal-content confirm-modal-content">
+      <div class="success-icon">✓</div>
+      <h2>Payment Complete!</h2>
+      <p class="thank-you-message">Thank you for your booking!</p>
+      <div class="booking-confirmation">
+        <p>Your booking has been confirmed and payment received.</p>
+        <p>We'll send you a confirmation email shortly.</p>
+      </div>
+      <button id="closeConfirmModal" class="btn-primary">Close</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

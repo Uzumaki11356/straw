@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .dashboard-container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #23252b;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+      padding: 32px 24px;
+    }
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .dashboard-header h1 {
+      color: #ff4c60;
+      margin: 0;
+    }
+    .dashboard-header a {
+      color: #fff;
+      background: #ff4c60;
+      padding: 8px 18px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+    .dashboard-header a:hover {
+      background: #ff1a3c;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #181a20;
+      color: #fff;
+    }
+    th, td {
+      padding: 12px 8px;
+      border-bottom: 1px solid #444;
+      text-align: left;
+    }
+    th {
+      background: #23252b;
+      color: #ff4c60;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    .no-bookings {
+      color: #ff4c60;
+      text-align: center;
+      padding: 40px 0;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <div class="dashboard-header">
+      <h1>Booking History</h1>
+      <a href="index.html">Home</a>
+    </div>
+    <div id="dashboardTable"></div>
+  </div>
+  <script>
+    function renderDashboard() {
+      const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+      const tableDiv = document.getElementById('dashboardTable');
+      if (!bookings.length) {
+        tableDiv.innerHTML = '<div class="no-bookings">No bookings found.</div>';
+        return;
+      }
+      let html = '<table><thead><tr>' +
+        '<th>Name</th><th>Movie</th><th>Date</th><th>Seats</th><th>Total Price</th><th>Time</th>' +
+        '</tr></thead><tbody>';
+      bookings.forEach(b => {
+        html += `<tr>
+          <td>${b.userName || ''}</td>
+          <td>${b.movie || ''}</td>
+          <td>${b.date || ''}</td>
+          <td>${b.seats ? b.seats.join(', ') : ''}</td>
+          <td>$${b.totalPrice || 0}</td>
+          <td>${b.createdAt ? new Date(b.createdAt).toLocaleString() : ''}</td>
+        </tr>`;
+      });
+      html += '</tbody></table>';
+      tableDiv.innerHTML = html;
+    }
+    renderDashboard();
+  </script>
+</body>
+</html> 
